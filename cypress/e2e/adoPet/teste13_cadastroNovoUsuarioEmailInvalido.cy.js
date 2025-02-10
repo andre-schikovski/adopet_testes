@@ -17,16 +17,20 @@ describe('Acesso a área de cadastro de novos usuários.', () => {
         
     }) 
     
-        it('Cadastro de novo usuário com dados válidos dados NULL', () => {
-            //cy.get('[data-test="input-name"]').type('John Doe');
-            //cy.get('[data-test="input-email"]').type('johndoe3@email.com');
-            //cy.get('[data-test="input-password"]').type('Senha123');
-            //cy.get('[data-test="input-confirm-password"]').type('Senha123');
-            cy.get('[data-test="submit-button"]').click();
 
+        it('Cadastro de novo usuário formato inválido do EMAIL', () => {
+            cy.get('[data-test="input-name"]').type('John Doe');
+            cy.get('[data-test="input-email"]').type('johndoe3email.com');
+            cy.get('[data-test="input-password"]').type('Senha123');
+            cy.get('[data-test="input-confirm-password"]').type('Senha123');
+            cy.get('[data-test="submit-button"]').click();
+            cy.get('form > :nth-child(5)').should('have.text','Por favor, verifique o email digitado');
+            
             
                     
         })
+
+
 
         it('Retorno a página inicial do portal adoPet', () => {
             cy.get('.header__home').click();
